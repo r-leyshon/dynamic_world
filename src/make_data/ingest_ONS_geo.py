@@ -6,7 +6,7 @@ import os
 
 
 def get_shapes(
-    endpoint=toml.load(os.path.join(here(), "lib", "01_ingest_lsoa_shapes.toml"))[
+    endpoint=toml.load(os.path.join(here(), "library", "01_ingest_lsoa_shapes.toml"))[
         "ONS_GEO"
     ]["LSOA_ENDPOINT"],
     retry_strategy=None,
