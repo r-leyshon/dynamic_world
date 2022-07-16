@@ -27,6 +27,7 @@ def get_shapes(
         ],
     },
     params={"resultOffset": 0, "resultRecordCount": 50},
+    expected_encoding="application/json",
 ):
     """
     Request the LSOA shapefiles from ONS geoportal
@@ -42,7 +43,7 @@ def get_shapes(
     if resp.ok is not True:
         raise ValueError(f"Response returned {resp.status_code}.")
 
-    elif "application/json" not in resp.headers["Content-Type"]:
+    elif expected_encoding not in resp.headers["Content-Type"]:
         raise ValueError(
             f"Response not as expected, {resp.headers.get('content-type')} returned."
         )
