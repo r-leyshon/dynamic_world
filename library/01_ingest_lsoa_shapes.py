@@ -1,8 +1,13 @@
 # ingest the generalised 2011 lsoa shapefiles and write to pickle
 import geopandas as gpd
 import pandas as pd
+import os
+from pyprojroot import here
 
 from src.make_data.ingest_ONS_geo import get_shapes
+
+# define the target file name & only run ingestion if it doesn't exist already
+target_path = os.path.join(here(), "data", "external", "lsoa_2011_shapefile.geojson")
 
 # this resource is limited to 50 records at a time, pagination required
 cont_loop = True
@@ -25,3 +30,4 @@ all_shapes = pd.concat(gdf_list, axis=0)
 
 
 # Output to suitable format
+all_shapes.to_file(target_path, driver="GeoJSON")
