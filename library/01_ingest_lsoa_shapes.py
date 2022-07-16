@@ -3,8 +3,12 @@ import geopandas as gpd
 import pandas as pd
 import os
 from pyprojroot import here
+import toml
 
 from src.make_data.ingest_ONS_geo import get_shapes
+
+# config deps
+CONF_VARS = toml.load(os.path.join(here(), "library", "01_ingest_lsoa_shapes.toml"))
 
 # define the target file name & only run ingestion if it doesn't exist already
 target_path = os.path.join(here(), "data", "external", "lsoa_2011_shapefile.geojson")
@@ -31,6 +35,16 @@ else:
     for i in resp_strings:
         gdf_list.append(gpd.read_file(i))
     all_shapes = pd.concat(gdf_list, axis=0)
+
+    # check we have the correct number of records
+    n_records = get_shapes(
+        endpoint=CONF_VARS["ONS_GEO"]["LSOA_RECORD_COUNT"],
+        params=None,
+        expected_encoding="text/plain",
+    )
+
+    if int(n_records.split(":")[-1].replace("}", "")) != len(all_shapes):
+        raise ValueError("Number of records ingested is wrong")
 
     # Output to suitable format
     all_shapes.to_file(target_path, driver="GeoJSON")

@@ -3,3 +3,4 @@ title = "LSOA shapefile ingest config file"
 [ONS_GEO]
 # endpoint below provides specified columns & json spec
 LSOA_ENDPOINT = "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Lower_Layer_Super_Output_Areas_DEC_2011_EW_BGC_V3/FeatureServer/0/query?where=1%3D1&outFields=LSOA11CD,LSOA11NM,LONG,LAT,Shape__Area&outSR=4326&f=json"
+LSOA_RECORD_COUNT = "https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Lower_Layer_Super_Output_Areas_DEC_2011_EW_BGC_V3/FeatureServer/0/query?where=1%3D1&outFields=LSOA11CD&returnGeometry=false&returnCountOnly=true&outSR=4326&f=json"
