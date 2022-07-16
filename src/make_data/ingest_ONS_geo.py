@@ -6,6 +6,7 @@ import os
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 import requests
+import json
 
 
 def get_shapes(
@@ -47,5 +48,5 @@ def get_shapes(
         )
 
     else:
-        content = resp.json()
+        content = json.dumps(resp.json())
         return content
