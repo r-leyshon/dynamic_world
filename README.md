@@ -33,17 +33,19 @@ pip install -r requirements.txt
 
 ## Required secrets and credentials
 
-To run this project, [you need a `.secrets` file with secrets/credentials as
-environmental variables][docs-loading-environment-variables-secrets]. The
-secrets/credentials should have the following environment variable name(s):
+To run this project, you will need:
+
+- the service Email for your GCP application service account, stored in a toml file under: `.git_ignore/ee.toml`
+- your GCP application key json file stored within a gitignored `.git_ignore` directory.
+
+
 
 | Secret/credential | Environment variable name | Description                                |
 |-------------------|---------------------------|--------------------------------------------|
-| Secret 1          | `SECRET_VARIABLE_1`       | Plain English description of Secret 1.     |
-| Credential 1      | `CREDENTIAL_VARIABLE_1`   | Plain English description of Credential 1. |
+| Secret 1          | `SERVICE_EMAIL`       | Email associated with service account for application. See [Google Earth Engine Service Account Documentation](https://developers.google.com/earth-engine/guides/service_account) for full details.     |
+| Secret 2      | `ee-lsoa-land-use-02b30d7b328b.json`   | Secret credential key value pari in JSON file format. |
 
-Once you've added, [load these environment variables using
-`.envrc`][docs-loading-environment-variables].
+Once you've added, use the `toml` package to reference `SERVICE_EMAIL`. `ee.ServiceAccountCredentials()` has native support for secret json encoding.
 
 ## Licence
 
