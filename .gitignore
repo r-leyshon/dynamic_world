@@ -887,3 +887,6 @@ docs/_linkcheck/
 
 # ignore secret config variables
 .secrets.toml
+
+# ignore a .git_ignore dir containing the service account key fot this app
+.git_ignore/
