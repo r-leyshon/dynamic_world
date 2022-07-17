@@ -1,5 +1,6 @@
 coverage==6.4.2
 detect-secrets==1.0.3
+earthengine-api==0.1.317
 geopandas==0.11.0
 myst-parser
 pre-commit==2.19.0
@@ -8,4 +9,3 @@ pytest==7.1.2
 requests==2.28.1
 Sphinx
 toml==0.10.2
-json
